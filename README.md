@@ -148,6 +148,33 @@ console.log(b) // {name: "yck"}
 但是在通常情况下，复杂数据都是可以序列化的，所以这个函数可以解决大部分问题。
 
 如果你所需拷贝的对象含有内置类型并且不包含函数，可以使用 [MessageChannel](https://developer.mozilla.org/zh-CN/docs/Web/API/MessageChannel)
+[HTML5 postMessage 和 onmessage API 详细应用](https://www.ibm.com/developerworks/cn/web/1301_jiangjj_html5message/index.html)
+```js
+function structuralclone(obj) {
+    return new Promise(resolve => {
+        const {p1, p2} = new MessageChannel()
+        p2.onmessage = ev => resolve(ev.data)
+        p1.postMessage(obj)
+    })
+}
+
+var obj = {
+    a: 1,
+    b: {
+        c: 2
+    }
+}
+
+obj.b.d = obj.b
+
+const test = async () => {
+    const clone = await structuralclone(obj)
+    console.log(clone)
+}
+test()
+```
+
+
 
 当然你可能想自己来实现一个深拷贝，但是其实实现一个深拷贝是很困难的，需要我们考虑好多种边界情况，比如原型链如何处理、DOM 如何处理等等，所以这里我们实现的深拷贝只是简易版，并且我其实更推荐使用 [lodash 的深拷贝函数](https://lodash.com/docs/4.17.11#cloneDeep)。
 
@@ -182,3 +209,5 @@ newObj.b.c = 1
 console.log(obj.b.c) // 2
 
 ```
+
+

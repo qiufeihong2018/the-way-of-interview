@@ -474,3 +474,26 @@ Promise.resolve(1).then(res => {
 // 1
 // 2
 ```
+
+### async和await
+> 涉及面试题:async和await的特点,他们的优点和缺点分别是什么?await原理是什么?
+
+```js
+async function test() {
+    return '2'
+}
+
+console.log(test())//Promise { '2' }
+```
+```js
+let a = 0
+let b = async () => {
+    a = a + await 10
+    console.log('2', a)
+}
+b()
+a++
+console.log('1', a)
+```
+### 常用定时器函数
+> 涉及面试题:setTimeout/setInterval/requestAnimationFrame各有什么特点?

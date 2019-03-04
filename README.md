@@ -223,3 +223,78 @@ console.log(obj.b.c) // 2
 :::
 ## ES6 知识点及常考面试题
 想必大家也知道 var 存在的问题了，使用 var 声明的变量会被提升到作用域的顶部
+### 原型继承和Class继承
+>涉及面试题:原型如何实现继承,Class如何实现继承?Class本质是什么?
+#### 组合继承
+```js
+function Perent(val) {
+    this.val = val;
+}
+
+Perent.prototype.getValue = function () {
+    console.log(this.val)
+}
+
+function Child(val) {
+    Perent.call(this, val)
+}
+
+Child.prototype = new Perent()
+const child = new Child(1)
+child.getValue()
+child instanceof Perent
+
+```
+
+#### 寄生组合继承
+```js
+function Perent(val) {
+    this.val = val
+}
+
+Perent.prototype.getValue = function () {
+    console.log(this.val)
+}
+
+function Child(val) {
+    Perent.call(this, val)
+}
+
+Child.prototype = Object.create(Perent.prototype, {
+    constructor: {
+        value: Child,
+        enumerable: false,
+        writable: true,
+        configurable: true
+    }
+})
+const child = new Child(1)
+child.getValue()
+child instanceof Perent
+```
+
+#### class 实现继承
+```js
+
+class Parent {
+    constructor(val) {
+        this.val = val
+    }
+
+    getVal() {
+        console.log(this.val)
+    }
+}
+
+class Child extends Parent {
+    constructor(val) {
+        super(val)
+        this.val = val
+    }
+}
+
+let child = new Child(12)
+child.getVal()
+child instanceof Parent
+```
+

@@ -298,3 +298,130 @@ child.getVal()
 child instanceof Parent
 ```
 
+### 模块化
+> 涉及面试题:为什么要使用模块化?都有哪几种方式可以模块化,各有什么特点?
+####立即执行函数
+```js
+(function (globalVariable) {
+    globalVariable.test = function () {
+
+    }
+})(globalVariable)
+
+```
+不明白立即执行函数的意义
+
+#### AMD和CMD
+ ```js
+define(['./a', './b'], function (a, b) {
+    a.do()
+    b.do()
+})
+
+define(function (require, exports, module) {
+    var a = require('./a')
+    a.do()
+})
+
+```   
+    
+#### CommonJS
+```js
+
+module.exports={
+    a:1
+}
+exports.a=1
+var module=require('./a.js')
+module.a
+
+var module=require('./a.js')
+module.a
+module.exports={a:1}
+var module={
+    id:'xxxx',
+    exports:{}
+}
+var exports=module.exports
+var load=function (module) {
+    var a=1
+    module.exports=a
+    return module.exports
+}
+```
+
+#### ES Module
+```js
+import xxx from './a.js'
+import {xxx} from './a.js'
+
+export function a() {
+}
+
+export default function () {
+}
+```
+
+### Proxy
+> 涉及面试题:Proxy可以实现什么功能?
+```js
+
+let onWatch = (obj, setBind, getLogger) => {
+    let handler = {
+        get(target, property, receiver) {
+            getLogger(target, property)
+            return Reflect.get(target, property, receiver)
+        },
+        set(target, property, value, receiver) {
+            setBind(value, property)
+            return Reflect.set(target, property, value)
+        }
+    }
+    return new Proxy(obj, handler)
+}
+let obj = {a: 10}
+let p = onWatch(
+    obj,
+    (v, property) => {
+        console.log(`监听到属性${property}改变为${v}`)
+    },
+    (target, property) => {
+        console.log(`'${property}'=${target[property]}`)
+    }
+)
+p.a=101
+p.a
+
+```
+
+### map-filer-reduce
+> 涉及面试题:map-filter-reduce各自有什么作用?
+#### map
+```js
+console.log([123, 1232, 123123].map(v => v + 2))
+//[ 125, 1234, 123125 ]
+
+console.log(['1', '2', '3'].map(parseInt))
+//[ 1, NaN, NaN ]
+```
+
+#### filter
+```js
+let array=[12,45,4,12,48,1,5]
+console.log(array.filter(v=>v>20))
+```
+#### reduce
+```js
+array = [12, 1454, 1, 45, 2]
+console.log(array.reduce((acc, current) => acc + current))
+// 1514
+```
+```js
+let array = [1, 5, 55, 114, 8]
+// console.log(array.map(v => v * 2))
+// [ 2, 10, 110, 228, 16 ]
+console.log(array.reduce((acc, current) => {
+    acc.push(current * 2)
+    return acc
+}), [])
+```

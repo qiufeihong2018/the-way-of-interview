@@ -11,9 +11,10 @@
 // let array = [12, 1454, 1, 45, 2]
 // console.log(array.reduce((acc, current) => acc + current))
 
-// let array = [1, 5, 55, 114, 8]
-// // console.log(array.map(v => v * 2))
-// // [ 2, 10, 110, 228, 16 ]
-// console.log(array.reduce((acc, current) => {
-//     return acc
-// }))
+let array = [1, 5, 55, 114, 8]
+// console.log(array.map(v => v * 2))
+// [ 2, 10, 110, 228, 16 ]
+console.log(array.reduce((acc, current) => {
+    acc.push(current * 2)
+    return acc
+}, []))

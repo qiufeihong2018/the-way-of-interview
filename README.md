@@ -425,3 +425,9 @@ console.log(array.reduce((acc, current) => {
     return acc
 }), [])
 ```
+## JS异步编程及常考面试题
+### 并发(concurrency)和并行(parallelism)区别
+> 涉及面试题:并行与并发的区别
+
+### 回调函数(Callback)
+> 涉及面试题:什么是回调函数?回调函数有什么缺点?如何解决回调地域问题

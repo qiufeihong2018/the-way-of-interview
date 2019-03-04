@@ -451,3 +451,26 @@ console.log(it.next(25))//{ value: 78, done: true }
 
 ```
 generator函数解决回调地域
+
+
+### Promise
+> 涉及面试题:promise的特点是什么,分别有什么优缺点?什么是Promise链?Promise
+构造函数执行和then函数执行有什么却别?
+
+```js
+new Promise((resolve, reject) => {
+    console.log('new promise')
+    resolve('resolve')
+})
+console.log('finish')
+```
+```js
+Promise.resolve(1).then(res => {
+    console.log(res)
+    return 2
+}).then(res => {
+    console.log(res)
+})
+// 1
+// 2
+```

@@ -431,3 +431,23 @@ console.log(array.reduce((acc, current) => {
 
 ### 回调函数(Callback)
 > 涉及面试题:什么是回调函数?回调函数有什么缺点?如何解决回调地域问题
+
+### Generator
+>涉及面試題:你理解的generator是什么?
+```js {1}
+function* foo(x) {
+    let y = 2 * (yield (x + 1))
+    let z = yield (y / 3)
+    return (x + y + z)
+}
+
+let it = foo(5)
+//x=5
+console.log(it.next())//{ value: 6, done: false }
+//x=5 y=48
+console.log(it.next(24))//{ value: 16, done: false }
+//x=5 y=48 z=25
+console.log(it.next(25))//{ value: 78, done: true }
+
+```
+generator函数解决回调地域

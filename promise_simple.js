@@ -25,6 +25,12 @@ function MyPromise(fn) {
             that.rejectedCallbacks.map(cb => cb(that.value))
         }
     }
+
+    try {
+        fn(resolve, reject)
+    } catch (e) {
+        reject(e)
+    }
 }
 
 //1.
@@ -60,7 +66,12 @@ MyPromise.prototype.then = function (onFulfilled, onRejected) {
 // - 当参数不是函数类型时,需要创建一个函数赋值给对应的参数,同时也实现了透传
 // - 判断状态的逻辑,当状态不是等待态时,就去执行相对应的函数.如果是等待态的话,就往回调函数中push函数.
 new MyPromise((resolve, reject) => {
-    resolve(111)
+    setTimeout(() => {
+        resolve(setTimeout(() => {
+            console.log('bb')
+        }, 1000))
+    }, 5000)
+    console.log('2121')
 }).then(value => {
     console.log('value', value)
 })

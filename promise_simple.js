@@ -46,6 +46,8 @@ function MyPromise(fn) {
 
 MyPromise.prototype.then = function (onFulfilled, onRejected) {
     const that = this
+    console.log('onRejected', onRejected)
+    console.log('onFulfilled', onFulfilled)
     onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : v => v
     onRejected = typeof onRejected === 'function' ? onRejected : r => {
         throw r
@@ -67,9 +69,7 @@ MyPromise.prototype.then = function (onFulfilled, onRejected) {
 // - 判断状态的逻辑,当状态不是等待态时,就去执行相对应的函数.如果是等待态的话,就往回调函数中push函数.
 new MyPromise((resolve, reject) => {
     setTimeout(() => {
-        resolve(setTimeout(() => {
-            console.log('bb')
-        }, 1000))
+        resolve(111)
     }, 5000)
     console.log('2121')
 }).then(value => {

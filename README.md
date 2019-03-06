@@ -684,4 +684,58 @@ promise中的resolve()之后才能进入then()
 ### Node中的Event Loop
 > 涉及面试题:Node中的Event Loop和浏览器中的有什么区别?process.nextTick执行顺序?
 
-- 完全不同,
+- 完全不同
+
+## JS 进阶知识点及常考面试题
+### 手写call/apply和bind函数
+> 涉及面试题:call/apply和bind函数内部实现是怎么样的?
+```js
+Function.prototype.maCall = function (context) {
+    if (typeof this !== 'function') {
+        throw new TypeError('error')
+    }
+    context = context || window
+    context.fn = this
+    const args = [...arguments].slice(1)
+    const result = context.fn(...args)
+    delete context.fn
+    return result
+}
+
+
+function Product(name, price) {
+    this.name = name,
+        this.price = price
+}
+
+function Food(name, price) {
+    Product.maCall(this, name, price)
+    this.category = 'food'
+}
+
+console.log(new Food('DDDD', 2342))
+
+```
+
+```js
+Function.prototype.myApply = function (context) {
+    if (typeof this !== 'function') {
+        throw new TypeError('ERROR')
+    }
+    context = context || window
+    context.fn = this
+    let result
+    if (arguments[1]) {
+        result = context.fn(...arguments[1])
+    } else {
+        result = context.fn()
+    }
+    delete context.fn
+    return result
+}
+
+const num = [5, 454, 4, 51, 48674, 14, 2]
+const max = Math.max.myApply(this, num)
+console.log(max)
+
+```

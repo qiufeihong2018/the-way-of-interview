@@ -612,3 +612,76 @@ new MyPromise((resolve, reject) => {
 })
 
 ```
+
+## Event Loop
+###  进程与线程
+> 涉及面试题:进程与线程区别?JS单线程带来的好处?
+
+- 进程是一段程序,描述了CPU在运行指令及加载和保存上下文所需的时间
+线程是更小单位,描述了一段指令所需的时间
+
+- JS引擎线程和渲染线程是互斥的,如果没有单线程,则会出错.
+
+### 执行栈
+> 涉及面试题:什么是执行栈?
+```js
+function bar(){bar()}bar()
+```
+![avatar](./public/06.png)
+
+### 浏览器中的Event Loop
+> 涉及面试题:异步代码执行顺序?解释一下什么是Event Loop?
+
+- 将异步代码挂起,再需要执行的时候加入Task队列中.一旦执行栈为空,就从队列中拿代码.本质来说异步还是同步行为(这句话没看懂)
+```js
+console.log('start')
+
+async function async1() {
+    await async2()
+    console.log('async1')
+}
+
+async function async2() {
+    console.log('async2')
+}
+
+async1()
+setTimeout(function f() {
+    console.log('setTimeout')
+}, 100)
+
+new Promise(resolve => {
+    console.log('promise')
+    resolve()
+}).then(function () {
+    console.log('promise1')
+}).then(function () {
+    console.log('promise2')
+})
+
+console.log('end')
+// start
+// async2
+// promise
+// end
+// promise1
+// promise2
+// async1
+// setTimeout
+```
+::: tip
+promise中的resolve()之后才能进入then()
+:::
+1. 首先执行同步代码,这属于宏任务
+2. 执行完所有同步代码后,执行栈为空,则查询是否有异步代码需要执行
+3. 执行所有微任务
+4. 执行完所有微任务后,如有必要会渲染页面
+5. 开始下一轮的event Loop,执行宏任务中的异步代码,也就是setTimeout中的回调函数
+
+(宏任务-微任务)
+(看了两遍,还是不太懂)
+
+### Node中的Event Loop
+> 涉及面试题:Node中的Event Loop和浏览器中的有什么区别?process.nextTick执行顺序?
+
+- 完全不同,

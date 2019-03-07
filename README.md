@@ -790,3 +790,11 @@ console.log(parseFloat((0.1+0.2).toFixed(10))===0.3)
 
 ```
 [parseFloat](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed)
+
+### 垃圾回收机制
+> 涉及面试题:V8下的垃圾回收机制是怎么样的?
+(小册子讲的不清楚)
+
+### 新生代算法
+
+### 老生代算法

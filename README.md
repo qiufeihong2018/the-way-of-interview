@@ -885,3 +885,22 @@ HappyPack可以将Loader的同步执行转换为并行
 会分析出模块之间的依赖关系,尽可能把打包出来的模块合并到一个函数中去.
 #### Tree Shaking
 可以实现删除项目中未被引用的代码
+
+## Vue和React两大框架的相爱相杀
+### MVVM
+### Virtual Dom
+> 涉及面试题:什么是Virtual DOM?为什么Virtual DOM比原生DOM快?
+
+### 路由原理
+>涉及面试题:前端路由原理?两种实现方式有什么区别?
+#### Hash模式
+
+#### History模式
+
+### Vue和React之间的区别
+- v-model双向绑定
+- 改变数据方式,Vue简单,React需要使用setState
+- React钩子函数执行多次,Fiber
+- React需要JSX/工具链,Vue使用模板语法,脱离工具链,能编写render在浏览器运行.
+- 生态,用户React多
+- Vue上手成本低

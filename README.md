@@ -861,3 +861,27 @@ class-原型链;promise-异步;proxy-vue;let-var
 
 service worker: 浏览器背后的独立线程
 
+## Webpack 性能优化
+### 减少Webpack打包时间
+#### 优化Loader
+```js
+loader: 'babel-loader?cacheDirectory=true'
+```
+#### HappyPack
+HappyPack可以将Loader的同步执行转换为并行
+#### DLLPlugin
+可以将特定的类库提前打包然后引入
+
+### 代码压缩
+- resolve.extensions
+- resolve.alias
+- module.noParse
+
+### 减少Webpack打包后的文件体积
+>注意:该内容也属于性能优化领域
+####按需加载
+我们可以适用按需加载,将每个路由页面单独打包为一个文件
+#### Scope Hoisting
+会分析出模块之间的依赖关系,尽可能把打包出来的模块合并到一个函数中去.
+#### Tree Shaking
+可以实现删除项目中未被引用的代码

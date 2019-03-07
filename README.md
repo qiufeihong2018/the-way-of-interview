@@ -739,3 +739,42 @@ const max = Math.max.myApply(this, num)
 console.log(max)
 
 ```
+
+### new
+>涉及面试题:new的原理是什么?通过new的方式创建对象和通过字面量创建有什么区别?
+
+可以见[js-new](https://github.com/qiufeihong2018/JS/blob/master/js/js.js)
+
+### instanceof原理
+>涉及面试题:instanceof原理是什么?
+```js
+function myInstanceof(left, right) {
+    left = left.__proto__
+    let prototype = right.prototype
+    while (true) {
+        if (left === null || left === undefined)
+            return false
+        if (prototype === left)
+            return true
+        left = left.__proto__
+    }
+}
+
+function Car(make, model, year) {
+    this.make = make;
+    this.model = model;
+    this.year = year;
+}
+
+var auto = new Car('Honda', 'Accord', 1998);
+
+console.log(myInstanceof(auto, Car));
+// expected output: true
+
+console.log(myInstanceof(auto, Object));
+// expected output: true
+
+```
+::: tip
+__proto__中的__是两个"_"
+:::

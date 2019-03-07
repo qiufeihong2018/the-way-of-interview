@@ -798,3 +798,25 @@ console.log(parseFloat((0.1+0.2).toFixed(10))===0.3)
 ### 新生代算法
 
 ### 老生代算法
+
+## JS 思考题
+> 思考题1:JS分为哪两大类型?都有什么各自的特点?你该如何判断正确的类型?
+1. 原始类型(null和number)
+2. 对象类型(垃圾回收,深浅拷贝)
+3. 判断类型(typeof和instaceof)
+
+> 思考题二:你理解的原型是什么?
+
+prototype-原型链-原型继承-class继承
+
+> 思考题三:bind/call和apply各自有什么区别?
+
+this,new
+
+> 思考题四:es6中有使用过什么? 
+
+class-原型链;promise-异步;proxy-vue;let-var
+
+> 思考题五:JS是如何运行的?
+
+单线程-线程和进程区别-执行栈-EventLoop-微任务和宏任务-浏览器和node中的EventLoop-垃圾回收机制

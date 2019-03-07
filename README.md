@@ -904,3 +904,31 @@ HappyPack可以将Loader的同步执行转换为并行
 - React需要JSX/工具链,Vue使用模板语法,脱离工具链,能编写render在浏览器运行.
 - 生态,用户React多
 - Vue上手成本低
+
+## Vue常考知识点
+### 生命周期钩子函数
+- beforeCreate 
+- created:props或data中的数据
+- beforeMount:创建VDOM
+- mounted:VDOM->DOM,挂载子组件
+- beforeUpdate:数据更新前
+- updated:数据更新后
+- keep-alive(activated/deactivated):切换前的内容在deactivated,切换后的内容是在actived
+- beforeDestroy:解决内存泄露
+- destroyed:销毁完子组件后
+
+### 组件通信
+
+### extend
+扩展组件生成一个构造器
+
+### mixin和mixins的区别
+混入代码
+
+### computed和watch区别
+
+### keep-alive组件有什么作用
+
+### v-show和v-if区别
+
+### 组件中的data什么时候可以使用对象

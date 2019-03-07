@@ -778,3 +778,15 @@ console.log(myInstanceof(auto, Object));
 ::: tip
 __proto__中的__是两个"_"
 :::
+
+### 为什么0.1+0.2!=0.3
+> 涉及面试题:为什么0.1+0.2!=0.3?如何解决这个问题?
+精度丢失
+```js
+console.log(0.1 + 0.2 === 0.30000000000000004)//true
+console.log(0.1 + 0.2 === 0.3)//false
+console.log(0.100000000000000002)//0.1
+console.log(parseFloat((0.1+0.2).toFixed(10))===0.3)
+
+```
+[parseFloat](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed)

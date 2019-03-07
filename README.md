@@ -820,3 +820,44 @@ class-原型链;promise-异步;proxy-vue;let-var
 > 思考题五:JS是如何运行的?
 
 单线程-线程和进程区别-执行栈-EventLoop-微任务和宏任务-浏览器和node中的EventLoop-垃圾回收机制
+
+## DevTools Tips
+之后慢慢看
+
+## 浏览器基础知识点及常考面试题
+### 事件机制
+> 涉及面试题:事件的触发过程是怎么样的?知道什么是事件代理吗?
+ 
+- window往事件触发处传播,遇到注册的捕获事件会触发
+- 传播到事件触发处时触发注册的事件
+- 从事件触发处往window传播,遇到注册的冒泡事件会触发
+---
+- 去的路上
+- 终点
+- 回的路上
+1. 注册事件
+2. 事件代理
+应该注册在父节点上
+
+### 跨域
+>涉及面试题:什么是跨域?为什么浏览器要适用同源策略?你有集中方式可以解决跨域问题?了解预检请求吗?
+
+1. 同源策略(协议/域名/端口)
+2. 主要防止CSRF攻击
+
+方式:
+- JSONP
+- CORS(服务端设置Accesss-Control-Allow-Origin)
+- document.domain(二级域名相同)
+- postMessage
+
+
+### 存储
+> 涉及面试题:有几种方式可以存储功能,分别有什么优缺点?什么是service worker?
+- cookie
+- localstorage
+- sessionstorage
+- indexDB
+
+service worker: 浏览器背后的独立线程
+
